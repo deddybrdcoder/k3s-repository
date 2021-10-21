@@ -1,12 +1,17 @@
-apiVersion: networking.k8s.io/v1 
 kind: Ingress
+apiVersion: networking.k8s.io/v1
 metadata:
   name: app-01-ingress
+
 spec:
   rules:
-  - http:
-      paths:
-      - path: /
-        backend:
-          serviceName: app-01-svc-cl
-          servicePort: 2345
+    - host: 
+      http:
+        paths:
+          - path: /
+            pathType: Exact
+            backend:
+              service:
+                name:  app-01-svc-cl
+                port:
+                  number: 2345
